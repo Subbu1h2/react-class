@@ -42,62 +42,60 @@
 
 // export default NumberInput;
 
-
-
-
-
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./App.css";
 
 const NumberInput = () => {
-    const [value, setValue] = useState('');
-    const [error, setError] = useState('');
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
-    const handleChange = (e) => {
-        const inputValue = e.target.value;
-        
-        if (/^\d+$/.test(inputValue)) {
-            
-            if (inputValue.length === 8) {
-                setValue(inputValue);
-                setError('');
-            } else {
-                setValue(inputValue);
-                setError('Please enter exactly 8 digits.');
-            }
-        } else {
-            setError('Please enter numbers only.');
-        }
-    };
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!value) {
-            setError('please enter a value.');
-        } else if(error){
-            alert(error)
-        } else {  
-            console.log('Submitted value:', value);
-        }
-    };
+    if (/^\d+$/.test(inputValue)) {
+      if (inputValue.length === 8) {
+        setValue(inputValue);
+        setError("");
+      } else {
+        setValue(inputValue);
+        setError("Please enter exactly 8 digits.");
+      }
+    } else {
+      setError("Please enter numbers only.");
+    }
+  };
 
-    return (
-      
-        <form onSubmit={handleSubmit}>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!value) {
+      setError("please enter a value.");
+    } else if (error) {
+      alert(error);
+    } else {
+      console.log("Submitted value:", value);
+    }
+  };
+
+  //hi
+
+  return (
+    <div className="main-container">
+      <form onSubmit={handleSubmit}>
         <center>
-            <input
-                type="text"
-                value={value}
-                onChange={handleChange}
-                placeholder="Enter 8-digit number"
-                maxLength={8}
-            />
-            <br></br>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <button type="submit">Submit</button>
-            </center>
-        </form>
-    );
+          <input
+            type="text"
+            value={value}
+            onChange={handleChange}
+            placeholder="Enter 8-digit number"
+            maxLength={8}
+          />
+          <br></br>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <button type="submit">Submit</button>
+        </center>
+      </form>
+    </div>
+  );
 };
 
 export default NumberInput;
